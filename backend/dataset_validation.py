@@ -1,10 +1,17 @@
 import json
+from json.decoder import JSONDecodeError
+import os
 
-DATA_PATH = "gatorhacks/data/dataset.jsonl"
+DATA_PATH = "data/dataset.jsonl"
 
 # Load the dataset
 with open(DATA_PATH, 'r', encoding='utf-8') as f:
-    items = [json.loads(line) for line in f]
+    items = []
+
+    for line in f:
+        items.append(json.loads(line))
+        
+    print(items)
 
 class DataFormatError(Exception):
     pass
